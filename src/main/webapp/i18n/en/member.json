@@ -1,0 +1,19 @@
+{
+    "jhipsterApp": {
+        "member" : {
+            "home": {
+                "title": "Members",
+                "createLabel": "Create a new Member",
+                "createOrEditLabel": "Create or edit a Member"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete Member {{ id }}?"
+            },
+            "detail": {
+                "title": "Member"
+            },
+            "name": "Name",
+            "birthDate": "BirthDate"
+        }
+    }
+}

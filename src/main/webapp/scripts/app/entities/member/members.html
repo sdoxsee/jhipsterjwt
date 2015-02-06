@@ -1,0 +1,115 @@
+<div>
+
+    <h2 translate="jhipsterApp.member.home.title">Member</h2>
+
+    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#saveMemberModal" ng-click="clear()">
+        <span class="glyphicon glyphicon-flash"></span> <span translate="jhipsterApp.member.home.createLabel">Create a new Member</span>
+    </button>
+    <div class="modal fade" id="saveMemberModal" tabindex="-1" role="dialog" aria-labelledby="myMemberLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form name="form" role="form" novalidate
+                      class="ng-scope ng-invalid ng-invalid-required ng-dirty ng-valid-minlength"
+                      ng-submit="create()">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                                ng-click="clear()">&times;</button>
+                        <h4 class="modal-title" id="myMemberLabel" translate="jhipsterApp.member.home.createOrEditLabel">Create or edit a Member</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>ID</label>
+                            <input type="text" class="form-control" name="id"
+                                   ng-model="member.id" readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label translate="jhipsterApp.member.name">Name</label>
+                            <input type="text" class="form-control"
+                                   ng-model="member.name">
+                        </div>
+                        <div class="form-group">
+                            <label translate="jhipsterApp.member.birthDate">BirthDate</label>
+                            <input type="date" class="form-control"
+                                   ng-model="member.birthDate">
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+                            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+                        </button>
+                        <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary">
+                            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="deleteMemberConfirmation">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form name="form" ng-submit="confirmDelete(member.id)">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                                ng-click="clear()">&times;</button>
+                        <h4 class="modal-title" translate="entity.delete.title">Confirm delete operation</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p translate="jhipsterApp.member.delete.question" translate-values="{id: '{{member.id}}'}">Are you sure you want to delete Member {{member.id}}?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+                            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+                        </button>
+                        <button type="submit" ng-disabled="form.$invalid" class="btn btn-danger">
+                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th translate="jhipsterApp.member.name">Name</th>
+                    <th translate="jhipsterApp.member.birthDate">BirthDate</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="member in members">
+                    <td><a ui-sref="memberDetail({id:member.id})">{{member.id}}</a></td>
+                    <td>{{member.name}}</td>
+                    <td>{{member.birthDate}}</td>
+                    <td>
+                        <button type="submit"
+                                ui-sref="memberDetail({id:member.id})"
+                                class="btn btn-info">
+                            <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span translate="entity.action.view"> View</span>
+                        </button>
+                        <button type="submit"
+                                ng-click="update(member.id)"
+                                class="btn btn-primary">
+                            <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span translate="entity.action.edit"> Edit</span>
+                        </button>
+                        <button type="submit"
+                                ng-click="delete(member.id)"
+                                class="btn btn-danger">
+                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.delete"> Delete</span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
